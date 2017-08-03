@@ -1,0 +1,76 @@
+spring:
+    profiles:
+        active: xxzlf-product #默认profile
+    application:
+        name: mcc #在注册中心注册的应用名称
+    aop:
+        proxy-target-class: true #启用CGLIB动态代理
+    http:
+        encoding:
+            force: true #强制编码，防止中文乱码
+    jackson:
+        date-format: 'yyyy-MM-dd hh:mm:ss'
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:1111/eureka/ #注册中心地址
+mybatis:
+    mapperLocations: classpath*:base/common/core/mybatis/*.xml
+    configLocations: classpath:mybatis-config.xml
+
+#  一个cron表达式有至少6个（也可能7个）有空格分隔的时间元素。
+#  按顺序依次为
+#  秒（0~59）
+#  分钟（0~59）
+#  小时（0~23）
+#  天（月）（0~31，但是你需要考虑你月的天数）
+#  月（0~11）
+#  天（星期）（1~7 1=SUN 或 SUN，MON，TUE，WED，THU，FRI，SAT）
+#  年份（1970－2099）
+
+# 客户回收服务
+callback:
+  # 开启总状态
+  status: false
+  # TMK回收开启状态
+  tmkStatus: false
+  # TMK回收执行时间
+  tmkSchedule: '0 0/10 * * * *'
+  # CC回收开启状态
+  ccStatus: false
+  # CC回收执行时间
+  ccSchedule: '0 0/10 * * * *'
+
+# 课表同步
+timeTable:
+  status: false
+  syncStatus: false
+  syncSchedule: '0/10 * * * * *'
+  checkStatus: false
+  checkSchedule: '0/10 * * * * *'
+
+# 考勤权责(每天晚上10:00触发)
+CoursePrice:
+  status: false
+  coursePriceSchedule: '0 0 22 * * ?'
+
+# 学生课耗（每天晚上10:00触发）
+isGoToClass:
+  status : true
+  isGoToClassSchedule : '0 0/5 * * * ?'
+
+# 设置请求头大小
+server:
+  max-http-header-size: 102400
+
+
+# 设置httpurl
+# 156 ： 192.168.1.42：8001
+# rc[checkurl,isGoToClassUrl] :  139.196.240.53:8001
+# rc[signInUrl] : "http://139.196.240.53:8003/"
+#HttpRequestService:
+#  checkurl: "http://139.196.240.53:8001/"
+#  isGoToClassUrl: "http://139.196.240.53:8001/"
+#  signInUrl: "http://139.196.240.53:8003/"
+
+
